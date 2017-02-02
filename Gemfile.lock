@@ -7,6 +7,14 @@ GIT
     teaspoon-jasmine (2.4.1)
       teaspoon (>= 1.0.0)
 
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 991ca999941195ec24d8a48327df8a4b09993b5f
+  specs:
+    simple_form (3.4.0)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -275,6 +283,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
+  simple_form!
   simplecov
   teaspoon!
   teaspoon-jasmine

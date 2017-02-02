@@ -3,6 +3,7 @@ gem 'rails', '4.2.7.1'
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
