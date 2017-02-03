@@ -1,0 +1,6 @@
+%h1.text-center.msg-board-hdr= @message.title
+%p= @message.content
+
+= link_to "Edit", edit_message_path(@message)
+= link_to "Delete", message_path(@message), method: :delete, data: { confirm: "Are you sure?" }
+= link_to "Home", messages_path 
