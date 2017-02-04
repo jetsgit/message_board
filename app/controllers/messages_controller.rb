@@ -7,7 +7,11 @@ class MessagesController < ApplicationController
   end
 
   def new
-    @message = current_user.messages.build
+    if current_user
+      @message = current_user.messages.build
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def create
