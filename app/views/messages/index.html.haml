@@ -1,14 +1,14 @@
-
-%h1 Message Board for Puget Sound Salmon
 .row
-  #sign-in
-    - if user_signed_in?
-      %li 
-        =link_to('Logout', destroy_user_session_path, method: :delete)
-    - else 
-      %li
-        =link_to('Login', new_user_session_path)
-      
+  .pull-right
+    #sign-in
+      - if user_signed_in?
+        %p
+          =link_to('Logout', destroy_user_session_path, method: :delete, class: "btn btn-primary")
+      - else 
+        %p
+          =link_to('Login', new_user_session_path, class: "btn btn-primary")
+        
+%h1.text-center  Message Board for Puget Sound Salmon
 
 
 .row
