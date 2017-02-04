@@ -1,17 +1,18 @@
 class MessagesController < ApplicationController
 
   before_action :find_message, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @messages = Message.all.order(created_at: :desc)
   end
 
   def new
-    if current_user
+    # if current_user
       @message = current_user.messages.build
-    else
-      redirect_to new_user_session_path
-    end
+    # else
+      # redirect_to new_user_session_path
+    # end
   end
 
   def create
