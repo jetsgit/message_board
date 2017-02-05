@@ -9,8 +9,10 @@
     .form-group.col-md-6.col-md-offset-3
       = f.input :title, wrapper: :vertical_input_group do
         = f.input_field :title, class: "form-control"
+        %span.help-block
     .form-group.col-md-6.col-md-offset-3
       = f.input :content, wrapper: :vertical_input_group do
         = f.input_field :content, class: "form-control"
+        %span.help-block
   .form-actions.col-md-3.col-md-offset-3
     = f.button :submit, class: "btn btn-primary"
