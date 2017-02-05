@@ -30,6 +30,8 @@ group :development, :test do
   gem 'teaspoon', git: 'git://github.com/modeset/teaspoon.git'
   gem 'teaspoon-jasmine'
   gem 'phantomjs'
+  # Rails panel in DevTools
+  gem 'meta_request'
 
 end
 
