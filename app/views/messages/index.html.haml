@@ -1,22 +1,7 @@
-.row
-  .pull-right
-    #sign-in
-      - if user_signed_in?
-        %p
-          =link_to('Logout', destroy_user_session_path, method: :delete, class: "btn btn-primary")
-      - else 
-        %p
-          =link_to('Login', new_user_session_path, class: "btn btn-primary")
-        
 %h1.text-center  Message Board for Puget Sound Salmon
-
-
 .row
   .col-md-6
     - @messages.each do |msg|
       %h2= link_to msg.title, message_path(msg.id)
       %p 
         Author: #{msg.user.first_name} #{msg.user.last_name}, Published #{time_ago_in_words(msg.created_at)} ago
-.row
-  .col-md-12
-    = link_to 'New Message', new_message_path, class: "btn btn-primary"
