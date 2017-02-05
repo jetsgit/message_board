@@ -1,3 +1,6 @@
+- modal ||= false
+- remote =  modal ? true : false
+
 #message-form
 = simple_form_for(@message) do |f|                                              
   = f.error_notification
