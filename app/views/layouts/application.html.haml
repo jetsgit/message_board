@@ -8,17 +8,17 @@
   %body
     #page
       %header.container
-        #menu.navbar.navbar-default
+        #menu.navbar.navbar-default.navbar-fixed-top
           .navbar-header
             %button.btn.btn-success.navbar-toggle{ data:{ toggle: 'collapse', target: '.navbar-collapse' }}
               %span.glyphicon.glyphicon-chevron-down
-              #logo
-                %a{href: '.'}
-                  %h4 PugetSoundSalmon
+            #logo
+              %a{href: '.'}
+                %h4 PugetSoundSalmon
           .navbar-collapse.collapse 
             %ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
-                %li.nav.active= link_to 'New Message', new_message_path
+                %li.nav= link_to 'New Msg', '#new_message_modal', 'data-toggle' =>  "modal"
                 %li.nav= link_to 'Logout', destroy_user_session_path, method: :delete
               - else
                 %li.nav= link_to "Sign In", new_user_session_path 
@@ -28,5 +28,13 @@
       %p.notice.alert.alert-success= notice
     - if alert
       %p.alert.alert-info= alert
+    #new_message_modal.modal.fade( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
+      .modal-dialogue
+        .modal-content
+          .modal-header
+          .modal-body
+            = render 'form', modal: true
+          .modal-footer
+            %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
     %section#body.container
       = yield

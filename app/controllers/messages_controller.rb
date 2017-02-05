@@ -1,26 +1,41 @@
 class MessagesController < ApplicationController
 
   before_action :find_message, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :new_post]
 
   def index
     @messages = Message.all.order(created_at: :desc)
+    @message = Message.new
   end
 
   def new
     # if current_user
-      @message = current_user.messages.build
+    @message = Message.new
     # else
       # redirect_to new_user_session_path
     # end
   end
 
+  # def new_post
+  #   byebug
+  #   respond_to do |format|
+  #     format.html
+  #     format.js
+  #   end
+  # end
+
   def create
     @message = current_user.messages.build(message_params)
-    if @message.save
-      redirect_to @message
-    else
-      render 'new'
+    respond_to do |format|
+      if @message.save
+        format.html { redirect_to @message, notice: 'Message was successfully created.'  }
+        format.json { render action: 'show', status: :created, location: @message  }
+        format.js   { render action: 'show', status: :created, location: @message  }
+      else
+        format.html { render action: 'new'  }
+        format.json { render json: @message.errors, status: :unprocessable_entity  }
+        format.js   { render json: @message.errors, status: :unprocessable_entity  }
+      end
     end
   end
 

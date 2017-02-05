@@ -1,7 +1,6 @@
 %h1.text-center.msg-board-hdr= @message.title
 %p.msg= @message.content
-
--if current_user.id == @message.user_id
+-if current_user && current_user.id == @message.user_id
   = link_to "Edit", edit_message_path(@message), class: "btn btn-primary"
   = link_to "Delete", message_path(@message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary"
 = link_to "Home", messages_path, class: "btn btn-primary" 
