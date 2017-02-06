@@ -28,15 +28,16 @@
       %p.notice.alert.alert-success= notice
     - if alert
       %p.alert.alert-info= alert
-    #new_message_modal.modal.fade( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
-      .modal-dialogue(role="document")
-        .modal-content
-          .modal-header
-            %button.close(type="button" data-dismiss="modal" aria-hidden="true") &times; 
-            %h4#myModalLabel.modal-title Create a New Message
-          .modal-body
-            = render 'form', modal: true
-          .modal-footer
-            %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
+    - if user_signed_in?
+      #new_message_modal.modal.fade( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
+        .modal-dialogue(role="document")
+          .modal-content
+            .modal-header
+              %button.close(type="button" data-dismiss="modal" aria-hidden="true") &times; 
+              %h4#myModalLabel.modal-title Create a New Message
+            .modal-body
+              = render 'form', modal: true
+            .modal-footer
+              %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
     %section#body.container
       = yield
