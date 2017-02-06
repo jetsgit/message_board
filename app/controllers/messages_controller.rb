@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
   before_action :find_message, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show, :new_post]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @messages = Message.all.order(created_at: :desc)
@@ -15,14 +15,6 @@ class MessagesController < ApplicationController
       # redirect_to new_user_session_path
     # end
   end
-
-  # def new_post
-  #   byebug
-  #   respond_to do |format|
-  #     format.html
-  #     format.js
-  #   end
-  # end
 
   def create
     @message = current_user.messages.build(message_params)
