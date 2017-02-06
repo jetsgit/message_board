@@ -1,6 +1,18 @@
 %h1.text-center.msg-board-hdr= @message.title
-%p.msg= @message.content
--if current_user && current_user.id == @message.user_id
-  = link_to "Edit", edit_message_path(@message), class: "btn btn-primary"
-  = link_to "Delete", message_path(@message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary"
-= link_to "Home", messages_path, class: "btn btn-primary" 
+.col-md-6.col-md-offset-3
+  %p.msg= @message.content
+  -if current_user && current_user.id == @message.user_id
+    = link_to "Edit", '#update_message_modal', 'data-toggle' => "modal", class: "btn btn-primary"
+    = link_to "Delete", message_path(@message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary"
+  = link_to "Home", messages_path, class: "btn btn-primary" 
+  - if user_signed_in?
+    #update_message_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
+      .modal-dialogue(role="document")
+        .modal-content
+          .modal-header
+            %button.close(type="button" data-dismiss="modal" aria-hidden="true") &times; 
+            %h4#myModalLabel.modal-title Create a New Message
+          .modal-body
+            = render 'form', modal: true
+          .modal-footer
+            %button.btn.btn-default( type='button' data-dismiss='modal' ) Close

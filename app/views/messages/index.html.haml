@@ -1,6 +1,6 @@
 %h1.text-center  Message Board for Puget Sound Salmon
 .row
-  .col-md-6
+  .col-md-8
     - @messages.each do |msg|
       %h2= link_to msg.title, message_path(msg.id)
       %p 

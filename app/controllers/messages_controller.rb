@@ -38,10 +38,16 @@ class MessagesController < ApplicationController
   end
 
   def update
-    if @message.update(message_params)
-      redirect_to @message
-    else
-      render 'edit'
+    respond_to do |format|
+      if @message.update(message_params)
+        format.html { redirect_to @message, notice: 'Message was successfully created.'   }
+        format.json { render action: 'show', status: :created, location: @message   }
+        format.js   { render action: 'show', status: :created, location: @message   }
+      else
+        format.html { render action: 'edit'   }
+        format.json { render json: @message.errors, status: :unprocessable_entity   }
+        format.js   { render json: @message.errors, status: :unprocessable_entity   }
+      end
     end
   end
 
