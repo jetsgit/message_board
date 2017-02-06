@@ -13,15 +13,14 @@
             %button.btn.btn-success.navbar-toggle{ data:{ toggle: 'collapse', target: '.navbar-collapse' }}
               %span.glyphicon.glyphicon-chevron-down
             #logo
-              %a{href: '.'}
-                %h4 PugetSoundSalmon
+              %h4= link_to 'PugetSoundSalmon', root_path
           .navbar-collapse.collapse 
             %ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
                 %li.nav= link_to 'New Msg', '#new_message_modal', 'data-toggle' =>  "modal"
                 %li.nav= link_to 'Logout', destroy_user_session_path, method: :delete
               - else
-                %li.nav= link_to "Sign In", new_user_session_path 
+                %li.nav= link_to "Sign In", '#login_modal', 'data-toggle' => "modal"
                 %li.nav= link_to "Sign Up", new_user_registration_path
           
     - if notice
@@ -39,5 +38,20 @@
               = render 'form', modal: true
             .modal-footer
               %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
+    -if !user_signed_in?
+      #login_modal.modal.fade( tabindex="-1" role="dialog" aria-labelledby="myModalSignin"  aria-hidden="true"  )
+        .modal-dialogue(role="document")
+          .modal-content
+            .modal-header
+              %button.close{"data-dismiss" => "modal"} ×
+              %h4#myModalSignin.modal-title Sign In
+            .modal-body
+              = simple_form_for(:user, :url => session_path(:user), :html => {:class => 'form-horizontal'}) do |f|
+                .inputs
+                  = f.input :email, :required => false, :autofocus => true
+                  = f.input :password, :required => false
+                .modal-footer
+                  = f.button :submit, "Sign in", :class => 'btn btn-primary'
+                  = link_to "Forgot your password?", new_password_path(:user)
     %section#body.container
       = yield
