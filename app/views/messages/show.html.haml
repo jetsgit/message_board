@@ -1,5 +1,5 @@
 %h1.text-center.msg-board-hdr= @message.title
-.col-md-6.col-md-offset-3
+.col-md-8.col-md-offset-2
   %p.msg= @message.content
   -if current_user && current_user.id == @message.user_id
     = link_to "Edit", '#update_message_modal', 'data-toggle' => "modal", class: "btn btn-primary"
