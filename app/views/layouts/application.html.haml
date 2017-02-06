@@ -28,7 +28,7 @@
     - if alert
       %p.alert.alert-info= alert
     - if user_signed_in?
-      #new_message_modal.modal.fade( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
+      #new_message_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
         .modal-dialogue(role="document")
           .modal-content
             .modal-header
@@ -39,7 +39,7 @@
             .modal-footer
               %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
     -if !user_signed_in?
-      #login_modal.modal.fade( tabindex="-1" role="dialog" aria-labelledby="myModalSignin"  aria-hidden="true"  )
+      #login_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalSignin"  aria-hidden="true"  )
         .modal-dialogue(role="document")
           .modal-content
             .modal-header
