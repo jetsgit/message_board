@@ -3,16 +3,48 @@
   %p.msg= @message.content
   -if current_user && current_user.id == @message.user_id
     = link_to "Edit", '#update_message_modal', 'data-toggle' => "modal", class: "btn btn-primary"
-    = link_to "Delete", message_path(@message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary"
+    = link_to "Delete",'#confirm-delete' , 'data-toggle' => "modal", data: {:id => "#{@message}"} , class: "btn btn-primary"
   = link_to "Home", messages_path, class: "btn btn-primary" 
-  - if user_signed_in?
-    #update_message_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
-      .modal-dialogue(role="document")
-        .modal-content
-          .modal-header
-            %button.close(type="button" data-dismiss="modal" aria-hidden="true") &times; 
-            %h4#myModalLabel.modal-title Create a New Message
-          .modal-body
-            = render 'form', modal: true
-          .modal-footer
-            %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
+  #update_message_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
+    .modal-dialogue(role="document")
+      .modal-content
+        .modal-header
+          %button.close(type="button" data-dismiss="modal" aria-hidden="true") &times; 
+          %h4#myModalLabel.modal-title Update Message
+        .modal-body
+          = render 'form', modal: true
+        .modal-footer
+          %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
+  #confirm-delete.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+          %h4#myModalLabel.modal-title Confirm Delete
+        .modal-body
+          %p
+            You are about to delete
+            %b
+              %i.title
+            record, this procedure is irreversible.
+          %p Do you want to proceed?
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+          %button.btn.btn-danger.btn-ok{:type => "button"} Delete
+
+:javascript
+  // Bind click to OK button within popup
+  $('#confirm-delete').on('click', '.btn-ok', function(e) {
+    var $modalDiv = $(e.delegateTarget);
+      var id = $(this).data('recordId');
+        $modalDiv.addClass('loading');
+          $.post('/messages/' + id).then(function() {
+            $modalDiv.modal('hide').removeClass('loading');
+          });
+    });
+  // Bind to modal opening to set necessary data properties to be used to make request
+  $('#confirm-delete').on('show.bs.modal', function(e) {
+    var data = $(e.relatedTarget).data();
+      $('.title', this).text(data.recordTitle);
+        $('.btn-ok', this).data('recordId', data.recordId);
+  });
