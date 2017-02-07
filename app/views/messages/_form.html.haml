@@ -3,7 +3,7 @@
 - remote =  modal ? true : false
 
 #message-form
-= simple_form_for(@message, remote: true, url: messages_path(@message, role: :form, 'data-model' => 'message')) do |f|                                              
+= simple_form_for(@message, :url => @message.new_record? ? url_for(action: 'create', controller: 'messages') : url_for(action: 'update', controller: 'messages')) do |f|         
   = f.error_notification
   .form-inputs
     .form-group.col-md-8.col-md-offset-2
