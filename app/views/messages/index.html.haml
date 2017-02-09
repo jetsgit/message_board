@@ -1,5 +1,5 @@
 %h1.text-center  Message Board for Puget Sound Salmon
 .row
-  #message-list.col-md-8
+  #message-list.col-md-6.col-md-offset-3
     - @messages.each do |msg|
       =render partial: 'message', locals: {msg: msg}
