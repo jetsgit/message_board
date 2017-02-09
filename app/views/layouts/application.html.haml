@@ -17,7 +17,8 @@
           .navbar-collapse.collapse 
             %ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
-                %li.nav= link_to 'New Msg', '#new_message_modal', 'data-toggle' =>  "modal"
+                - if current_page?(controller: 'messages', action: 'index')
+                  %li.nav= link_to('New Msg', '#new_message_modal', 'data-toggle' =>  "modal") 
                 %li.nav= link_to 'Logout', destroy_user_session_path, method: :delete
               - else
                 %li.nav= link_to "Sign In", '#login_modal', 'data-toggle' => "modal"
