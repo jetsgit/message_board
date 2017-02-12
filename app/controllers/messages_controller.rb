@@ -53,7 +53,11 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy
-    redirect_to root_path
+    respond_to do |format|
+      format.html {redirect_to messages_url}
+      format.js {redirect_to messages_url}
+      format.json {head :no_content}
+    end
   end
 
   private

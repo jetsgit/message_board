@@ -4,7 +4,8 @@
   %p#msg-content.msg= render partial: 'show_content', locals: {msg: @message}
   -if current_user && current_user.id == @message.user_id
     = link_to "Edit", '#edit_message_modal', 'data-toggle' => "modal",  class: "btn btn-primary"
-    = link_to "Delete",'#confirm-delete' , 'data-toggle' => "modal", data: {:id => "#{@message}"} , class: "btn btn-primary"
+    -# = link_to "Delete",'#confirm-delete' , 'data-toggle' => "modal", data: {:id => "#{@message}"} , class: "btn btn-primary"
+    = link_to 'Delete', @message, remote: true, :method => :delete, data: {confirm: "Delete message: #{@message.title} "}, :class => 'btn btn-sm btn-danger'
   = link_to "Home", messages_path, class: "btn btn-primary" 
   #edit_message_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
     .modal-dialogue(role="document")
@@ -16,22 +17,6 @@
           = render 'form', modal: true
         .modal-footer
           %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
-  #confirm-delete.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-          %h4#myModalLabel.modal-title Confirm Delete
-        .modal-body
-          %p
-            You are about to delete
-            %b
-              %i.title
-            record, this procedure is irreversible.
-          %p Do you want to proceed?
-        .modal-footer
-          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
-          %button.btn.btn-danger.btn-ok{:type => "button"} Delete
 
 :javascript
   // Bind click to OK button within popup
