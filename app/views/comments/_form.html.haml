@@ -1,0 +1,10 @@
+/ AJAX message
+= simple_form_for([@message, @message.comments.build],   remote: true) do |f|
+  = f.error_notification
+  .form-inputs
+    .form-group.col-md-8.col-md-offset-2
+      = f.input :comment, label: 'Your Thoughts:'
+    %span.help-block
+  .form-actions.col-md-8.col-md-offset-2
+    = f.button :submit, class: "btn btn-primary"
+

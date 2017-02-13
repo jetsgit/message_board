@@ -10,11 +10,15 @@
     padding-left: 40px;
   } 
 }
-.msg {
+.msg, #comments {
   margin: 2em;
   background-color: #d7e6f4;
   border-radius: 14px;
   padding: 20px;
+}
+
+.jet {
+  color: white;
 }
 
 .hr-msg {

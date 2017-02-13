@@ -7,6 +7,10 @@
     -# = link_to "Delete",'#confirm-delete' , 'data-toggle' => "modal", data: {:id => "#{@message}"} , class: "btn btn-primary"
     = link_to 'Delete', @message, remote: true, :method => :delete, data: {confirm: "Delete message: #{@message.title} "}, :class => 'btn btn-sm btn-danger'
   = link_to "Home", messages_path, class: "btn btn-primary" 
+  %h2 Comments
+  #comments
+    = render @message.comments.order("created_at ASC")
+
   #edit_message_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
     .modal-dialogue(role="document")
       .modal-content
@@ -17,6 +21,18 @@
           = render 'form', modal: true
         .modal-footer
           %button.btn.btn-default( type='button' data-dismiss='modal' ) Close
+ 
+  #new_comment_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myCommentLabel" aria-hidden="true"  )
+    .modal-dialogue(role="document")
+      .modal-content
+        .modal-header
+          %button.close(type="button" data-dismiss="modal" aria-hidden="true") &times; 
+          %h4#myCommentLabel.modal-title Create a New Comment
+        .modal-body
+          = render 'comments/form', modal: true
+        .modal-footer
+          %button.btn.btn-default( type='button' data-dismiss='modal'  ) Close
+
 
 :javascript
   // Bind click to OK button within popup
