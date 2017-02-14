@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :message do
-    title "MyString"
-    content "MyText"
+    title "Fishing for Flounder"
+    content "Wonderful fish."
   end
 end
