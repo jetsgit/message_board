@@ -20,3 +20,5 @@ tags
 .sass-cache
 .DS_Store
 *.swn
+zeus.json
+custom_plan.rb
