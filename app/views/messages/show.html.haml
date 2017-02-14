@@ -4,7 +4,6 @@
   %p#msg-content.msg= render partial: 'show_content', locals: {msg: @message}
   -if current_user && current_user.id == @message.user_id
     = link_to "Edit", '#edit_message_modal', 'data-toggle' => "modal",  class: "btn btn-primary"
-    -# = link_to "Delete",'#confirm-delete' , 'data-toggle' => "modal", data: {:id => "#{@message}"} , class: "btn btn-primary"
     = link_to 'Delete', @message, remote: true, :method => :delete, data: {confirm: "Delete message: #{@message.title} "}, :class => 'btn btn-sm btn-danger'
   = link_to "Home", messages_path, class: "btn btn-primary" 
   %h2 Comments
