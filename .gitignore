@@ -17,3 +17,6 @@
 *.swp
 .byebug_history
 tags
+.sass-cache
+.DS_Store
+*.swn
