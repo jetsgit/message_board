@@ -3,7 +3,7 @@
   %head
     %title MessageBoard
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     #page
@@ -47,6 +47,7 @@
             .modal-header
               %button.close{"data-dismiss" => "modal"} ×
               %h4#myModalSignin.modal-title Sign In
+              #error_explanation
             .modal-body
               = simple_form_for(:user, :url => session_path(:user), :html => {:class => 'form-horizontal'}) do |f|
                 .inputs
