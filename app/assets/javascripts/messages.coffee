@@ -1,5 +1,5 @@
 $(document).ready ->
-  $(document).on 'ajaxError', 'form#new_message', (event, jqxhr, settings, exception) ->
+  $(document).bind 'ajaxError', 'form#new_message', (event, jqxhr, settings, exception) ->
     $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
     return
   return
@@ -11,7 +11,7 @@ $(document).ready ->
     @modal 'hide'
     # clear form input elements
     @find('form input[type="text"]').val ''
-    # @find('form input["type=textarea"]').val ''
+    $("textarea#msg-content").val ''
     # clear error state
     @clear_previous_errors()
     return
@@ -22,7 +22,7 @@ $(document).ready ->
     model = @data('model')
     $.each errors, (field, messages) ->
       $input = $('input[name="' + model + '[' + field + ']"]')
-      $input.closest('.form-group').addClass('has-error').find('.help-block').html messages.join(' & ')
+      $input.closest('.form-group').addClass('has-error').find('.help-block').html(messages.join(' & '))
       return
     return
 
@@ -34,20 +34,6 @@ $(document).ready ->
     return
   return
 ) jQuery
-
-# $("form.new_message").on "ajax:error", (event, xhr, status, error) ->
-#   errors = jQuery.parseJSON(xhr.responseText)
-#   errorcount = errors.length
-#   $('#error_explanation').empty()
-#   if errorcount > 1
-#     $('#error_explanation').append('<div class="alert alert-error">The form contains ' + errorcount + ' errors.</div>')
-#   else
-#     $('#error_explanation').append('<div class="alert alert-error">The form contains 1 error</div>')
-#   $('#error_explanation').append('<ul>')
-#   for e in errors
-#     $('#error_explanation').append('<li>' + e + '</li>')
-#   $('#error_explanation').append('</ul>')
-#   $('#error_explanation').show()
 
 
 $ ->

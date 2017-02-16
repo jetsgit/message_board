@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
       else
         format.html { render action: 'new'  }
         format.json { render json: @message.errors, status: :unprocessable_entity  }
-        format.js   { render json: @message.errors.full_messages, status: :unprocessable_entity  }
+        format.js   { render json: @message.errors, status: :unprocessable_entity  }
       end
     end
   end
