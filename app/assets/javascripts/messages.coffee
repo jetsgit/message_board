@@ -30,6 +30,7 @@ $(document).ready ->
     $('.form-group.has-error', this).each ->
       $('.help-block', $(this)).html ''
       $(this).removeClass 'has-error'
+      $('textarea#msg-content').val ''
       return
     return
   return

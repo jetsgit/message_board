@@ -28,6 +28,7 @@ RSpec.describe MessagesController, type: :controller do
     end
     describe "POST create" do
       context "valid data" do
+        subject { xhr :post, :create, {message: FactoryGirl.attributes_for(:message)}  }
         it "has a 201 status code for a post create with AJAX" do
           xhr :post, :create, {message: FactoryGirl.attributes_for(:message)}
           expect(response.code).to eq('201')
@@ -35,12 +36,23 @@ RSpec.describe MessagesController, type: :controller do
         end
         it "creates a new message in the database" do
           expect {
-            xhr :post, :create, {message: FactoryGirl.attributes_for(:message)} 
+            subject
           }.to change(Message, :count).by(1)
+        end
+        it "renders the index template" do
+          expect(subject).to render_template("index")
         end
       end
       context "invalid data" do
-
+        subject { xhr :post, :create, {message: FactoryGirl.attributes_for(:message, title: '')}  }
+        it "does not render a messages/new template" do
+          expect(subject).to_not render_template("messages/hew")
+        end
+        it "does not create a new message in database" do
+          expect {
+            subject
+          }.not_to change(Message, :count)
+        end
       end
     end
 
