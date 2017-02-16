@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe MessagesController, type: :controller do
   login_user
-
+  describe "GET index" do
+    it "renders index template" do
+      get :index
+      expect(response).to render_template(:index)
+    end
+  end
   describe "GET new" do
     it "should have a current_user" do
       expect(subject.current_user).to_not eq(nil)
@@ -56,4 +61,18 @@ RSpec.describe MessagesController, type: :controller do
       end
     end
   end
+  describe "GET edit" do
+    let(:message) {FactoryGirl.create(:message)}
+    # For some reason, below does not work with expect(assigns)
+    # subject {FactoryGirl.create(:message)}
+    it 'renders :edit template' do
+      get :edit, id: message
+      expect(response).to render_template(:edit)
+    end
+    it 'assigns requested message to the template' do
+      get :edit, id: message
+      expect(assigns(:message)).to eq( message)
+    end
+  end
+
 end
