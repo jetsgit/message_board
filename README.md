@@ -16,8 +16,6 @@ Summary
 * This is a demonstration of Devise authentication
 of a message board with comments.
 
-* Design is mobile-first.
-
 Testing
 =======
 
