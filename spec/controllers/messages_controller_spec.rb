@@ -52,7 +52,7 @@ RSpec.describe MessagesController, type: :controller do
     context "invalid data" do
       subject { xhr :post, :create, {message: FactoryGirl.attributes_for(:message, title: '')}  }
       it "does not render a messages/new template" do
-        expect(subject).to_not render_template("messages/hew")
+        expect(subject).to_not render_template("messages/new")
       end
       it "does not create a new message in database" do
         expect {
@@ -74,5 +74,4 @@ RSpec.describe MessagesController, type: :controller do
       expect(assigns(:message)).to eq( message)
     end
   end
-
 end
