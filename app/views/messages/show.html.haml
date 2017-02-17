@@ -2,6 +2,7 @@
   %h1#msg-hdr.text-center.msg-board-hdr= render partial: 'show_title', locals: {msg: @message}
 .col-md-8.col-md-offset-2
   %p#msg-content.msg= render partial: 'show_content', locals: {msg: @message}
+  .col-md-6.col-md-offset-2.push-right
   -if current_user && current_user.id == @message.user_id
     = link_to "Edit", '#edit_message_modal', 'data-toggle' => "modal",  class: "btn btn-primary"
     = link_to 'Delete', @message, remote: true, :method => :delete, data: {confirm: "Delete message: #{@message.title} "}, :class => 'btn btn-sm btn-danger'
