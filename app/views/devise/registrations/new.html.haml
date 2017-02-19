@@ -5,23 +5,17 @@
     = devise_error_messages!
     .form-inputs
       .form-group.col-md-6.col-md-offset-3
-        = f.input :first_name do
-          = f.input_field :first_name, class: "form-control"
+        = f.text_field :first_name, class: "form-control"
       .form-group.col-md-6.col-md-offset-3
-        = f.input :last_name do
-          = f.input_field :last_name, class: "form-control"
+        = f.text_field :last_name, class: "form-control"
       .form-group.col-md-6.col-md-offset-3
-        = f.input :email do
-          = f.input_field :email, class: "form-control"
+        = f.text_field :email, class: "form-control"
       .form-group.col-md-6.col-md-offset-3
-        = f.input :description do
-          = f.input_field :description, class: "form-control"
+        = f.text_field :description, class: "form-control"
       .form-group.col-md-6.col-md-offset-3
-        = f.input :password do
-          = f.input_field :password, class: "form-control"
+        = f.text_field :password, class: "form-control"
       .form-group.col-md-6.col-md-offset-3
-        = f.input :password_confirmation do
-          = f.input_field :password_confirmation, class: "form-control"
+        = f.text_field :password_confirmation, class: "form-control"
     .form-actions.col-md-3.col-md-offset-3
       = f.button :submit, class: "btn btn-primary"
 = render 'devise/shared/links'
