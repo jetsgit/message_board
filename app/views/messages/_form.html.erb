@@ -3,27 +3,9 @@
 <% modal ||= false %>
 <% remote =  modal ? true : false %>
 <div id="message-form"></div>
-<%= bootstrap_form_for(@message, label_errors: true, remote: true, html: {role: :form, data: {model: 'message'}}, :url => @message.new_record? ? url_for(action: 'create', controller: 'messages') : url_for(action: 'update', controller: 'messages')) do |f| %>
-  <div id="error_explanation" style='display:none;'>
-    <ul>
-      <% if @message.errors.any? %>
-        <% @message.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
-  <%# <%= f.error_notification %1> %>
-  <div class="form-inputs">
-    <div class="col-md-10 col-md-offset-1">
-        <%= f.text_field :title, class: "form-control" %>
-        <span class="help-block"></span>
-    </div>
-    <div class="col-md-10 col-md-offset-1">
-        <%= f.text_area :content, class: "form-control", id: 'msg-content' %>
-        <span class="help-block"></span>
-    </div>
-  </div>
+<%= simple_form_for(@message, validate: true, remote: true, wrapper: :vertical_form, html: {role: :form, data: {model: 'message'}}, :url => @message.new_record? ? url_for(action: 'create', controller: 'messages') : url_for(action: 'update', controller: 'messages')) do |f| %>
+      <%= f.input :title, class: "form-control" %>
+      <%= f.input :content, class: "form-control" %>
   <div class="form-actions col-md-6 pull-right">
     <button class="btn btn-close" type='button' data-dismiss='modal'>Close</button>
     <%= f.button :submit, class: "btn btn-primary" %>

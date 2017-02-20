@@ -1,3 +1,7 @@
+# $ ->
+#   $('.modal').on 'shown.bs.modal', ->
+#     $('form[data-validate]').enableClientSideValidations()
+
 $(document).ready ->
   $(document).bind 'ajaxError', 'form#new_message', (event, jqxhr, settings, exception) ->
     $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
@@ -11,7 +15,7 @@ $(document).ready ->
     @modal 'hide'
     # clear form input elements
     @find('form input[type="text"]').val ''
-    $("textarea#msg-content").val ''
+    $("textarea#message_content").val ''
     # clear error state
     @clear_previous_errors()
     return
@@ -21,16 +25,23 @@ $(document).ready ->
     @clear_previous_errors()
     model = @data('model')
     $.each errors, (field, messages) ->
-      $input = $('input[name="' + model + '[' + field + ']"]')
-      $input.closest('.form-group').addClass('has-error').find('.help-block').html(messages.join(' & '))
+      if field == 'title'
+        mytag = $('input[name="' + model + '[' + field + ']"]')
+        mytag.closest('.form-group').addClass('has-error') #.find('.help-block').html(messages.join('  '))
+        mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>")
+      else if field == 'content'
+        mytag = $('textarea#message_content')
+        mytag.closest('.form-group').addClass('has-error')
+        mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>") 
       return
     return
 
   $.fn.clear_previous_errors = ->
     $('.form-group.has-error', this).each ->
-      $('.help-block', $(this)).html ''
+      myspan = ''
+      myspan = $(this).children('span')
+      $(myspan).text ''
       $(this).removeClass 'has-error'
-      $('textarea#msg-content').val ''
       return
     return
   return
@@ -38,6 +49,7 @@ $(document).ready ->
 
 
 $ ->
+
   $.rails.allowAction = (link) ->
     return true unless link.attr('data-confirm')
     $.rails.showConfirmDialogue(link)

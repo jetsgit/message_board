@@ -1,2 +1,7 @@
-$('#message-list').prepend("<%= j render partial: 'message', locals: { msg: @message } %>");
-$('#new_message_modal').modal_success();
+<% if @result %>
+  $('#message-list').prepend("<%= j render partial: 'message', locals: { msg: @message } %>");
+  $('#new_message_modal').modal_success();
+<% else %>
+  @message
+<% end %>
+
