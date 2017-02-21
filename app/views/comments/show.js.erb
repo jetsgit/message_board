@@ -1,2 +1,10 @@
-$('#comments').append("<%= j render partial: 'comment', locals: { comment: @comment  } %>");
-$('#new_comment_modal').modal_success();
+<% if @result %>
+  $('#comments').append("<%= j render partial: 'comment', locals: { comment: @comment  } %>");
+  $('#new_comment_modal').modal_success();
+<% else %>
+    @comment
+<% end %>
+
+
+
+

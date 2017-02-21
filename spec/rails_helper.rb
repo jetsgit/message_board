@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
 require 'support/controller_macros'
+require 'support/feature_macros'
 require 'ffaker'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -39,6 +40,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.extend ControllerMacros, :type => :controller
+  config.include FeatureMacros
   config.use_transactional_fixtures = true
 
   # RSpec Rails can automatically mix in different behaviours to your tests

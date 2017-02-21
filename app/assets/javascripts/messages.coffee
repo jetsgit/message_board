@@ -3,10 +3,24 @@
 #     $('form[data-validate]').enableClientSideValidations()
 
 $(document).ready ->
-  $(document).bind 'ajaxError', 'form#new_message', (event, jqxhr, settings, exception) ->
+  $(document).bind 'ajaxError', 'form#new_message', (event, jqxhr, settings, exception) -> # 'form#new_message'
     $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
     return
+  $(document).on 'submit', 'form#new_comment', (event, jqxhr, settings, exception) -> # 'form#new_message'
+    $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
+    return
+          
+  # $(document).bind 'ajaxError', 'form#new_comment', (event, jqxhr, settings, exception) ->
+  #   $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
+  #   return
+
+  $('.modal').on 'hidden.bs.modal', ->
+    $(this).find('form')[0].reset()
+    $(this).find('span.msg-error').text ''
+    $(this).find('.has-error').removeClass()
+    return
   return
+
 
 (($) ->
 
@@ -25,7 +39,7 @@ $(document).ready ->
     @clear_previous_errors()
     model = @data('model')
     $.each errors, (field, messages) ->
-      if field == 'title'
+      if (field == 'title' ) || (field == 'comment')
         mytag = $('input[name="' + model + '[' + field + ']"]')
         mytag.closest('.form-group').addClass('has-error') #.find('.help-block').html(messages.join('  '))
         mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>")
@@ -45,8 +59,18 @@ $(document).ready ->
       return
     return
   return
-) jQuery
 
+
+  $.fn.modal_jet = ->
+    $home = this
+    # clear form input elements
+    # @find('form input[type="text"]').val ''
+    # $("textarea#message_content").val ''
+    # clear error state
+    # @clear_previous_errors()
+    console.log "hi folks!"
+
+) jQuery
 
 $ ->
 

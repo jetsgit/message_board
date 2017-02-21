@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.save
 
     respond_to do |format|
-      if @comment.save
+      if @result = @comment.save
         format.html { redirect_to @message, notice: 'Comment was successfully created.'   }
         format.json { render action: 'show', status: :created, location: @message   }
         format.js {render action: 'show', location: @message}

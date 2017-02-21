@@ -50,12 +50,12 @@
               %h4#myModalSignin.modal-title Sign In
               #error_explanation
             .modal-body
-              = bootstrap_form_for(:user, :url => session_path(:user)) do |f|
+              = simple_form_for(:user, :url => session_path(:user)) do |f|
                 .inputs
-                  = f.text_field :email, :required => false, :autofocus => true
-                  = f.text_field :password, :required => false
+                  = f.input :email, :required => true, :autofocus => true
+                  = f.input :password, :required => true
                 .modal-footer
-                  = f.button :submit,  :class => 'btn btn-primary'
+                  = f.button :submit,  'Submit', :class => 'btn btn-primary'
                   = link_to "Forgot your password?", new_password_path(:user)
     %section#body.container
       = yield
