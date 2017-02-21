@@ -6,13 +6,6 @@ $(document).ready ->
   $(document).bind 'ajaxError', 'form#new_message', (event, jqxhr, settings, exception) -> # 'form#new_message'
     $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
     return
-  $(document).on 'submit', 'form#new_comment', (event, jqxhr, settings, exception) -> # 'form#new_message'
-    $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
-    return
-          
-  # $(document).bind 'ajaxError', 'form#new_comment', (event, jqxhr, settings, exception) ->
-  #   $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
-  #   return
 
   $('.modal').on 'hidden.bs.modal', ->
     $(this).find('form')[0].reset()
@@ -20,7 +13,6 @@ $(document).ready ->
     $(this).find('.has-error').removeClass()
     return
   return
-
 
 (($) ->
 
@@ -33,7 +25,7 @@ $(document).ready ->
     # clear error state
     @clear_previous_errors()
     return
-    
+
   $.fn.render_form_errors = (errors) ->
     $form = this
     @clear_previous_errors()
@@ -41,12 +33,12 @@ $(document).ready ->
     $.each errors, (field, messages) ->
       if (field == 'title' ) || (field == 'comment')
         mytag = $('input[name="' + model + '[' + field + ']"]')
-        mytag.closest('.form-group').addClass('has-error') #.find('.help-block').html(messages.join('  '))
+        mytag.closest('.form-group').addClass('has-error')
         mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>")
       else if field == 'content'
         mytag = $('textarea#message_content')
         mytag.closest('.form-group').addClass('has-error')
-        mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>") 
+        mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>")
       return
     return
 
