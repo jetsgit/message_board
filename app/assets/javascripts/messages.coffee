@@ -3,7 +3,7 @@
 #     $('form[data-validate]').enableClientSideValidations()
 
 $(document).ready ->
-  $(document).bind 'ajaxError', 'form#new_message', (event, jqxhr, settings, exception) -> # 'form#new_message'
+  $(document).on 'ajax:error', null,'form', (event, jqxhr, settings, exception) -> # 'form#new_message'
     $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
     return
 
