@@ -1,9 +1,10 @@
 / AJAX message
-= simple_form_for([@message, @message.comments.build], validate: true, html: {role: :form, data: {model: 'comment'}}, remote: true) do |f|
-  .form-inputs
-    .col-md-10.col-md-offset-1
-      = f.input :comment, label: 'Your Thoughts:'
-  .form-actions.col-md-6.pull-right
-    %button.btn.btn-close( type='button' data-dismiss='modal'   ) Close
-    = f.button :submit, class: "btn btn-primary check-form"
+- modal ||= false
+- remote =  modal ? true : false
+#comment-form
+  = simple_form_for([@message, @message.comments.build], validate: true, remote: true, wrapper: :vertical_form, html: {role: :form, data: {model: 'comment'}} ) do |f|
+    = f.input :comment, label: 'Your Thoughts:'
+    .form-actions.col-md-6.pull-right
+      %button.btn.btn-close( type='button' id='close-comment' data-dismiss='modal'   ) Close
+      = f.button :submit, class: "btn btn-primary check-form"
 

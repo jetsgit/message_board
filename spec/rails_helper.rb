@@ -10,6 +10,8 @@ require 'support/controller_macros'
 require 'support/feature_macros'
 require 'ffaker'
 require 'pry-byebug'
+# require 'capybara/poltergeist'
+# Capybara.javascript_driver = :poltergeist
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

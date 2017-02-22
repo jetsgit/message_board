@@ -1,10 +1,6 @@
-# $ ->
-#   $('.modal').on 'shown.bs.modal', ->
-#     $('form[data-validate]').enableClientSideValidations()
-
 $(document).ready ->
   $(document).on 'ajax:error', null,'form', (event, jqxhr, settings, exception) -> # 'form#new_message'
-    $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
+    $(event.target).render_form_errors $.parseJSON(jqxhr.responseText)
     return
 
   $('.modal').on 'hidden.bs.modal', ->
@@ -31,12 +27,16 @@ $(document).ready ->
     @clear_previous_errors()
     model = @data('model')
     $.each errors, (field, messages) ->
-      if (field == 'title' ) || (field == 'comment')
+      if (field == 'title' )
         mytag = $('input[name="' + model + '[' + field + ']"]')
         mytag.closest('.form-group').addClass('has-error')
         mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>")
       else if field == 'content'
         mytag = $('textarea#message_content')
+        mytag.closest('.form-group').addClass('has-error')
+        mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>")
+      else if field == 'comment'
+        mytag = $('textarea#comment_comment')
         mytag.closest('.form-group').addClass('has-error')
         mytag.prev().after("<span class='msg-error'>&nbsp can't be blank</span>")
       return

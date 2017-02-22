@@ -20,7 +20,7 @@
               - if user_signed_in? 
                 %li.nav= link_to 'Logout', destroy_user_session_path, method: :delete
                 - if  (current_page?(root_path) || current_page?(messages_path))  
-                  %li.nav= link_to "New Msg", '#new_message_modal', 'data-toggle' => "modal"
+                  %li.nav= link_to "New Msg", '#new_message_modal', id: 'new-msg-link', 'data-toggle':  "modal"
                 - unless (current_page?(root_path) || current_page?(messages_path))
                   %li.nav= link_to  "New Comment", '#new_comment_modal', 'data-toggle' => "modal"
               - else
