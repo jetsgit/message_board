@@ -14,14 +14,9 @@ class CommentsController < ApplicationController
         format.js {render action: 'show', location: @message}
       else
         format.html { render action: 'new'   }
-        format.json { render json: @comment.errors, status: :unprocessable_entity   }
+        format.json { render :json => { :error => @order.errors.full_messages  }, :status => 422  }
         format.js   { render json: @comment.errors, status: :unprocessable_entity   }
       end
-    end
-
-    if @comment.save 
-    else
-      render 'new'
     end
   end
 
