@@ -36,8 +36,7 @@ RSpec.describe MessagesController, type: :controller do
     context "valid data" do
       subject { xhr :post, :create, {message: FactoryGirl.attributes_for(:message)}  }
       it "has a 201 status code for a post create with AJAX" do
-        xhr :post, :create, {message: FactoryGirl.attributes_for(:message)}
-        expect(response.code).to eq('201')
+        expect(subject.response_code).to eq(201)
         expect(request.path).to eq '/messages'
       end
       it "creates a new message in the database" do
