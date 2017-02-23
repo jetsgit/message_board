@@ -80,3 +80,14 @@ abbr[title], abbr[data-original-title] {
   margin: 0px;
   display: block;
 }
+@media all and (max-device-width: 720px){
+    h1 {
+        font-size: 20px;
+    }
+}
+.index-msg {
+  margin-bottom: 1.5em;
+}
+.img-responsive {
+  margin-bottom: 1em;
+}
