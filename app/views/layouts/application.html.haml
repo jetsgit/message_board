@@ -8,11 +8,11 @@
     = csrf_meta_tags
   %body
     #page
-      %header.container
+      %header.container-fluid
         #menu.navbar.navbar-default.navbar-fixed-top
           .navbar-header
             %button.btn.btn-success.navbar-toggle{ data:{ toggle: 'collapse', target: '.navbar-collapse' }}
-              %span.glyphicon.glyphicon-chevron-down
+              %span.glyphicon.glyphicon-menu-hamburger
             #logo
               %h4= link_to 'PugetSoundSalmon', root_path
           .navbar-collapse.collapse 
@@ -57,5 +57,8 @@
                 .modal-footer
                   = f.button :submit,  'Submit', :class => 'btn btn-primary'
                   = link_to "Forgot your password?", new_password_path(:user)
-    %section#body.container
+    #header-img
+      .container-fluid.col-md-12.col-xs-12.hdr-image
+        = image_tag "steelhead.jpg", class: 'img-responsive'
+
       = yield
