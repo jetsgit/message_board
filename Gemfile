@@ -35,7 +35,8 @@ group :development, :test do
   gem 'phantomjs'
   # Rails panel in DevTools
   gem 'meta_request'
-
+  # mass create db:seed
+  gem 'populator'
 end
 
 group :development do
