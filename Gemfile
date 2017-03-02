@@ -43,6 +43,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'pry-rails', '0.3.4'
   gem 'pry-byebug', '3.3.0'
+  gem "pry-doc"
   gem 'rails_best_practices'
   gem 'rubocop', require: false
   gem 'brakeman'
