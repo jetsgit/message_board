@@ -77,11 +77,6 @@ abbr[title], abbr[data-original-title] {
   margin-top: 25px;
   display: block;
 }
-@media all and (max-device-width: 720px){
-    h1 {
-        font-size: 20px;
-    }
-}
 .index-msg {
   margin-bottom: 1.5em;
   color: #0238d0;
@@ -90,3 +85,16 @@ abbr[title], abbr[data-original-title] {
 .img-responsive {
   margin-bottom: 1em;
 }
+
+.pagination {
+  margin: 0px
+}
+@media all and (max-device-width: 720px){
+    h1 {
+        font-size: 20px;
+    }
+    .index-msg {
+      margin: 0em 0em 1em 0em;
+    }
+}
+
