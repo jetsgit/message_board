@@ -4,5 +4,5 @@ class Message < ActiveRecord::Base
   # validates :title, presence: true
   # validates :content, presence: true
   validates_presence_of :title, :content
-  self.per_page = 36
+  self.per_page = 16
 end
