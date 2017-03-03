@@ -4,5 +4,5 @@
     - @messages.each do |msg|
       =render partial: 'message', locals: {msg: msg}
 .row
-  .col-md-6.col-xs-11.pull-right
+  .col-md-6.col-md-offset-2.col-xs-12.text-right
     = will_paginate @messages, :outer_window => 0, :inner_window => 0,  :previous_label => '<span class="glyphicon glyphicon-triangle-left"></span>', :next_label => '<span class="glyphicon glyphicon-triangle-right"></span>',  renderer: BootstrapPagination::Rails

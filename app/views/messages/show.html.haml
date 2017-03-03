@@ -2,14 +2,18 @@
   %h1#msg-hdr.text-center.msg-board-hdr= render partial: 'show_title', locals: {msg: @message}
   .col-xs-12.col-md-8.col-md-offset-2
     %p#msg-content.msg= render partial: 'show_content', locals: {msg: @message}
-    .col-md-6.col-md-offset-2.push-right
     -if current_user && current_user.id == @message.user_id
+      .col-md-12.text-right
       = link_to "Edit", '#edit_message_modal', 'data-toggle' => "modal",  class: "btn btn-primary"
       = link_to 'Delete', @message, remote: true, :method => :delete, data: {confirm: "Delete message: #{@message.title} "}, :class => 'btn btn-sm btn-danger'
-    = link_to "Home", messages_path, class: "btn btn-primary" 
-  .col-xs-12.col-md-12
+      = link_to "Home", messages_path, class: "btn btn-primary" 
+    -else
+      .col-md-12.text-right
+        = link_to "Home", messages_path, class: "btn btn-primary" 
+
+  .col-xs-12.col-md-8.col-md-offset-2
     %h2 Comments
-  #comments.col-xs-12.col-md-10.col-md-offset-1
+  #comments.col-md-8.col-md-offset-2.col-xs-12
     = render @message.comments.order("created_at ASC")
 
   #edit_message_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
