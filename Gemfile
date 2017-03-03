@@ -24,7 +24,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 
-gem 'ffaker'
 group :development, :test do
   gem "rspec"
   gem "rspec-rails"
@@ -38,6 +37,7 @@ group :development, :test do
   # Rails panel in DevTools
   gem 'meta_request'
   # mass create db:seed
+  gem 'ffaker'
 end
 
 group :development do
