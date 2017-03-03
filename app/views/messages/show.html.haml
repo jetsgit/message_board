@@ -3,7 +3,7 @@
   .col-xs-12.col-md-8.col-md-offset-2
     %p#msg-content.msg= render partial: 'show_content', locals: {msg: @message}
     -if current_user && current_user.id == @message.user_id
-      .col-md-12.text-right
+      .col-md-8.col-xs-10.text-right
       = link_to "Edit", '#edit_message_modal', 'data-toggle' => "modal",  class: "btn btn-primary"
       = link_to 'Delete', @message, remote: true, :method => :delete, data: {confirm: "Delete message: #{@message.title} "}, :class => 'btn btn-sm btn-danger'
       = link_to "Home", messages_path, class: "btn btn-primary" 
