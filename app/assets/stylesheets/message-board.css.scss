@@ -91,7 +91,10 @@ abbr[title], abbr[data-original-title] {
 }
 @media all and (max-device-width: 720px){
     h1 {
-        font-size: 20px;
+      font-size: 24px;
+    }
+    h2 {
+      font-size: 22px;
     }
     .index-msg {
       margin: 0em 0em 1em 0em;
