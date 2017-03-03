@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @messages = Message.all.order(created_at: :desc)
+    @messages = Message.page(params[:page]).order(created_at: :desc)
     @message = Message.new
   end
 
