@@ -1,4 +1,4 @@
-%h4= link_to msg.title, message_path(msg.id)
+%h4= link_to msg.title.titleize, message_path(msg.id)
 %p 
   Author: #{msg.user.first_name} #{msg.user.last_name}, Published #{time_ago_in_words(msg.created_at)} ago
 %p
