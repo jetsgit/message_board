@@ -11,6 +11,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise', '4.2.0'
 gem 'haml', '4.0.7'
 gem 'bootswatch-rails'
+
+# immigrant for referential integrity
+gem 'immigrant'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
