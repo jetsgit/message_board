@@ -64,5 +64,8 @@ class MessagesController < ApplicationController
 
   def find_message
     @message = Message.find(params[:id])
+    # @message = Message.find(Slug[params[:id]])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
   end
 end
