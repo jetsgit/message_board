@@ -40,4 +40,13 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   # for devise gem
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000  }
+
+  # testing redis
+  # config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes  }
+  if ENV['REDIS_URL']
+    config.action_controller.perform_caching = true
+    config.cache_store = :redis_store, { expires_in: 90.minutes   }
+  else
+    config.action_controller.perform_caching = false
+  end
 end
