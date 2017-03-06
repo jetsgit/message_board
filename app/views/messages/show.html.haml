@@ -1,7 +1,8 @@
 #show-wrapper
-  %h1#msg-hdr.text-center.msg-board-hdr= render partial: 'show_title', locals: {msg: @message}
+  %h1#msg-hdr.text-center.msg-board-hdr= render partial: 'show_title', locals: {msg: @message}, cached: true
   .col-xs-12.col-md-8.col-md-offset-2
-    %p#msg-content.msg= render partial: 'show_content', locals: {msg: @message}
+    %p#msg-content.msg
+      = render partial: 'show_content', locals: {msg: @message}, cached: true
     -if (current_user && current_user.id == @message.user_id) || (current_user && current_user.admin?)
       .col-md-8.col-xs-10.text-right
       = link_to "Edit", '#edit_message_modal', 'data-toggle' => "modal",  class: "btn btn-primary"
