@@ -31,11 +31,6 @@
                 %li.nav= link_to "Sign In", '#login_modal', 'data-toggle' => "modal"
                 %li.nav= link_to "Sign Up", new_user_registration_path
           
-    - if notice
-      %p.notice.alert.alert-success= notice
-    - if alert
-      %p.alert.alert-info= alert
-    - if user_signed_in?
       #new_message_modal.modal.fade.col-md-6.col-md-offset-3( tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" )
         .modal-dialogue(role="document")
           .modal-content
@@ -64,5 +59,10 @@
     #header-img
       .container-fluid.col-md-12.col-xs-12.hdr-image
         = image_tag "steelhead.jpg", class: 'img-responsive'
+    - if notice
+      %p.notice.alert.alert-success= notice
+    - if alert
+      %p.alert.alert-info= alert
+    - if user_signed_in?
 
       = yield
