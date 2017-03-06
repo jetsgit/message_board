@@ -1,5 +1,5 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Settings speciredisfied here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -43,9 +43,11 @@ Rails.application.configure do
 
   # testing redis
   # config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes  }
-  if ENV['REDIS_URL']
+  if ENV['REDIS_URL_DEV']
     config.action_controller.perform_caching = true
-    config.cache_store = :redis_store, { expires_in: 90.minutes   }
+    config.cache_store = :redis_store, {
+      host: 'localhost'
+    }
   else
     config.action_controller.perform_caching = false
   end
