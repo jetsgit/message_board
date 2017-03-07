@@ -2,7 +2,9 @@ $(document).ready ->
   $(document).on 'ajax:error', null,'form', (event, jqxhr, settings, exception) -> # 'form#new_message'
     $(event.target).render_form_errors $.parseJSON(jqxhr.responseText)
     return
-
+  $('.carousel').carousel({
+      interval: 6000
+  })
   $('.modal').on 'hidden.bs.modal', ->
     $(this).find('form')[0].reset()
     $(this).find('span.msg-error').text ''
