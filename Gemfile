@@ -56,7 +56,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'brakeman'
   gem 'awesome_print'
-  gem 'rack-mini-profiler'
+  # gem 'rack-mini-profiler'
   gem 'simplecov', require: false
 end
 

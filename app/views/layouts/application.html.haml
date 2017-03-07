@@ -18,7 +18,8 @@
             %button.btn.btn-success.navbar-toggle{ data:{ toggle: 'collapse', target: '.navbar-collapse' }}
               %span.glyphicon.glyphicon-menu-hamburger
             #logo
-              %h4= link_to 'PugetSoundSalmon', root_path
+              =image_tag "salmon_logo_menu_small.png", class: "menu-img" 
+              = link_to 'PugetSoundSalmon', root_path, class: "menu-img"
           .navbar-collapse.collapse 
             %ul.nav.navbar-nav.navbar-right
               - if user_signed_in? 
