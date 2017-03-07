@@ -114,6 +114,11 @@ abbr[title], abbr[data-original-title] {
       margin-top: 90px;
     }
 }
+@media all and (max-device-width: 720px) {
+  .hdr-image {
+    margin-top: 50px;
+  }
+}
 h1, h2 {
     font-family: 'Cinzel Decorative'
 }
