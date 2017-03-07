@@ -77,7 +77,7 @@ abbr[title], abbr[data-original-title] {
 }
 .hdr-image {
   padding: 0px;
-  margin-top: 25px;
+  margin-top: 100px;
   display: block;
 }
 .index-msg, h1 {
@@ -176,4 +176,11 @@ a.menu-img {
   color: #4ACDFF;
     
 }
+.navbar-default .navbar-nav > li > a {
+  color: #4ACDFF;
+  &:hover, &:focus {
+    color: #4ACDFF;
+    text-decoration: underline;
+  }
 
+}
