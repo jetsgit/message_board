@@ -114,7 +114,7 @@ abbr[title], abbr[data-original-title] {
       margin-top: 90px;
     }
 }
-@media all and (max-device-width: 720px) {
+@media all and (min-width: 568px) and (max-width: 1000px) {
   .hdr-image {
     margin-top: 50px;
   }
