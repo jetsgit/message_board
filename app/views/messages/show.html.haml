@@ -1,6 +1,6 @@
 #show-wrapper
   %h1#msg-hdr.text-center.msg-board-hdr= render partial: 'show_title', locals: {msg: @message}, cached: true
-  .col-xs-12.col-md-8.col-md-offset-2
+  #show-body.col-xs-12.col-md-8.col-md-offset-2
     %p#msg-content.msg
       = render partial: 'show_content', locals: {msg: @message}, cached: true
     -if (current_user && current_user.id == @message.user_id) || (current_user && current_user.admin?)
@@ -12,7 +12,7 @@
       .col-md-12.text-right
         = link_to "Home", messages_path, class: "btn btn-primary" 
 
-    -if @message.comments.present?
+    #comment-body
       .col-xs-12.col-md-8
         %h2 Comments
       #comments.col-xs-12
